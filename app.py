@@ -24,7 +24,13 @@ def get_students():
     return jsonify(student_data)
 
 
+@app.route('/students/<int:student_id>', methods=['GET'])
+def get_student_by_id(student_id):
+    for student in student_data:
+        if student['id'] == student_id:
+            return jsonify(student)
 
+    return jsonify({'message': 'Student not found'}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
